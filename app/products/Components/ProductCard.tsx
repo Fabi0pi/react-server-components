@@ -1,7 +1,7 @@
-'use-client'
 import Link from 'next/link';
 import styles from './productCard.module.css';
 import Image from "next/image";
+import { DeleteProduct } from './buttons';
 
 
 type Props = {
@@ -18,7 +18,7 @@ export const ProductCard = ({ title, description, imageSrc, price, rate, id }: P
 
     return (
         <>
-            <Link className={styles.container} href={`products/${id}`}>
+            <div className={styles.container} >
                 <div className={styles.imageContainer}>
                     <Image className={styles.image} alt={`Product image - ${title}`} width="210" height="300" src={imageSrc}></Image>
                 </div>
@@ -37,8 +37,16 @@ export const ProductCard = ({ title, description, imageSrc, price, rate, id }: P
                             {`⭐️ ${rate}`}
                         </div>
                     </div>
+                    <div className={styles.footerCard}>
+                        <div>
+                            <DeleteProduct id={id} />
+                        </div>
+                        <div>
+                        <Link href={`products/${id}`} > Edit </Link>
+                        </div>
+                    </div>
                 </div>
-            </Link>
+            </div>
         </>
     )
 }
