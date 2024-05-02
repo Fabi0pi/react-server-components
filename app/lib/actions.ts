@@ -66,12 +66,14 @@ export async function addProduct(formData: FormData) {
     price: formData.get("price"),
     id: newId.toString()
   };
-  console.log("🚀 ~ addProduct ~ rawFormData:", rawFormData)
+  
   try {
     connectToDB();
     const newProduct = new Product(Object.assign(rawFormData));
     await newProduct.save();
+
     revalidatePath("/products");
+    redirect("/products");
   } catch (err) {
     console.log("error edit: ", err);
     throw err;
