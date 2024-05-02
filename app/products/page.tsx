@@ -1,21 +1,13 @@
-'use client'
 import { Suspense, useEffect, useState } from "react";
 import ProductsLayout from "./layout";
 import Loading from "../loading";
 import { ProductList } from "./product-list";
-import { getAllProducts } from "../lib/actions";
-import { Product } from "../lib/types";
+import { getProducts } from "../lib/data";
 
-export default function Products() {
-  const [products, setProducts] = useState<Product[]>([])
-  
-  useEffect(()=> {
-    const fetchProduct = async () => {
-      const fetchedProducts = await getAllProducts()
-      setProducts(fetchedProducts)
-    }
-    fetchProduct()
-  }, [])
+export default async function Products() {
+
+  const products = await getProducts()
+  if (!products) return
   
   return (
     <ProductsLayout>

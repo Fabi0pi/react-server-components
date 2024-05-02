@@ -1,9 +1,9 @@
-import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
 
 export default function Home() {
   return (
+    <>
     <main className={styles.main}>
       <div className={styles.grid}>
         <Link
@@ -16,7 +16,7 @@ export default function Home() {
           </h2>
         </Link>
         <Link
-          href="/products"
+          href="/products/create"
           className={styles.card}
           rel="noopener noreferrer"
         >
@@ -26,5 +26,6 @@ export default function Home() {
         </Link>
       </div>
     </main>
+    </>
   );
 }

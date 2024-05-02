@@ -3,8 +3,13 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
+  padding: 1rem;
+  height: calc(100vh - 101px);
+}
+
+.headerNav{
+  height: 80px;
+  border-bottom: 1px solid rgb(138, 131, 131);
 }
 
 .description {

@@ -1,7 +1,11 @@
 .listContainer {
     display: flex;
+    justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 4rem;
     gap: 1rem;
+}
+
+.sectionContainer {
+    padding: 2rem;
 }

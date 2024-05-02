@@ -6,24 +6,24 @@ import styles from './products.module.css';
 
 export function ProductList ({products}:{products: Product[]}) {
   const [items, setItems] = useState(products)
+  console.log("🚀 ~ ProductList ~ items:", items)
   
   useEffect(()=> {
-    console.log("items", items);
     setItems(products)
-  }, [products, items])
+  }, [products])
 
   return (
     <div className={styles.listContainer}>
     {
       items?.map((el: Record<string, any>) => {
         return <ProductCard
-          id={el.id}
-          imageSrc={el.image}
-          description={el.title}
-          title={el.category}
-          price={el.price}
-          rate={el.rating.rate}
-          key={el.id}
+          id={el?.id}
+          imageSrc={el?.image}
+          description={el?.title}
+          title={el?.category}
+          price={el?.price}
+          rate={el?.rating?.rate}
+          key={el?.id}
         />
       })
     }

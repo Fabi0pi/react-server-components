@@ -59,11 +59,14 @@ export async function deleteProduct(formData: FormData) {
 }
 
 export async function addProduct(formData: FormData) {
+  const newId = Math.floor(1000 + Math.random() * 9000);
   const rawFormData = {
-    title: formData.get("title"),
+    category: formData.get("title"),
+    image: formData.get('image'),
     price: formData.get("price"),
-    id: formData.get("id"),
+    id: newId.toString()
   };
+  console.log("🚀 ~ addProduct ~ rawFormData:", rawFormData)
   try {
     connectToDB();
     const newProduct = new Product(Object.assign(rawFormData));
