@@ -1,8 +1,15 @@
-export type Product = {
-    description: string;
+
+  type Rating = {
+    rate: number;
+    count: number;
+  }
+  
+  export type Product = {
+    id: number;
     title: string;
     price: number;
-    rate: number;
+    description: string;
+    category: string;
     image: string;
-    id: number;
-  };
+    rating: Rating;
+  }
