@@ -38,6 +38,7 @@ export async function deleteProduct(formData: FormData) {
       throw new Error("ID not provided");
     }
 
+    
     await Product.findOneAndDelete({id});
 
     revalidateTag("products");
@@ -65,3 +66,8 @@ export async function addProduct(formData: FormData) {
     redirect("/products");
 
 }
+
+
+// export async function wait(ms:number) {
+//   return new Promise(res => setTimeout(res, ms))
+// }

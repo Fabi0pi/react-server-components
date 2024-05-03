@@ -8,12 +8,12 @@ export default async function Products() {
 
   const products = await getProducts()
   if (!products) return
-  
+
   return (
-    <ProductsLayout>
-      <Suspense fallback={<Loading />}>
+    <Suspense fallback={<Loading />}>
+      <ProductsLayout>
         <ProductList products={products}></ProductList>
-      </Suspense>
-    </ProductsLayout>
+      </ProductsLayout>
+    </Suspense>
   )
 }
