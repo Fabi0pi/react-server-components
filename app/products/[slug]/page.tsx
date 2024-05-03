@@ -1,15 +1,16 @@
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import styles from './detail.module.css';
 import { deleteProduct, editProduct } from '@/app/lib/actions';
 import { getProduct } from '@/app/lib/data';
+import Loading from '../Components/loading';
 
 export default async function Detail({ params }: { params: { slug: number } }) {
   const product = await getProduct(params.slug)
   if (!product) return
 
   return (
-    <>
+    <Suspense fallback={<Loading />}>
       <form action={editProduct} className={styles.formContainer}>
         <div className={styles.field}>
           <span>ID: {product.id}</span>
@@ -38,6 +39,6 @@ export default async function Detail({ params }: { params: { slug: number } }) {
           </button>
         </form>
       </div>
-    </>
+    </Suspense>
   );
 }
