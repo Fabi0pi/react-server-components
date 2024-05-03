@@ -1,7 +1,7 @@
 "use server";
 
 import { connectToDB } from "./db";
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { Product } from "./models";
 import { redirect } from "next/navigation";
 
@@ -14,12 +14,11 @@ export async function editProduct(formData: FormData) {
     price: formData.get("price"),
   };
 
-  try {
     connectToDB();
     const product = await Product.findOne({ id: productId });
 
     if (!product) {
-      throw new Error(`Prodotto con ID ${productId} non trovato`);
+      throw new Error(`Product with ID ${productId} not found`);
     }
 
     product.image = rawFormData.image;
@@ -28,27 +27,21 @@ export async function editProduct(formData: FormData) {
 
     await product.save();
 
-    revalidatePath("/products");
+    revalidateTag("products");
     redirect("/products");
-  } catch (error) {
-    console.error("Errore durante l'aggiornamento del prodotto:", error);
-  }
 }
 
 export async function deleteProduct(formData: FormData) {
   const {id}  = Object.fromEntries(formData)
 
-  try {
     if (!id) {
       throw new Error("ID not provided");
     }
 
     await Product.findOneAndDelete({id});
-    revalidatePath("/products");
+
+    revalidateTag("products");
     redirect("/products");
-  } catch (err) {
-    console.error("delete error: ", err);
-  }
 }
 
 export async function addProduct(formData: FormData) {
@@ -60,14 +53,15 @@ export async function addProduct(formData: FormData) {
     id: newId.toString()
   };
   
-  try {
+
     connectToDB();
     const newProduct = new Product(Object.assign(rawFormData));
+    if (!newProduct) {
+      throw new Error(`something went wrong addProduct`);
+    }
     await newProduct.save();
 
-    revalidatePath("/products");
+    revalidateTag("products");
     redirect("/products");
-  } catch (err) {
-    console.log("error edit: ", err);
-  }
+
 }

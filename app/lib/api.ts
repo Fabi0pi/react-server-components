@@ -7,6 +7,7 @@ export async function getProducts(): Promise<Product[]> {
     headers: {
       "Cache-Control": "no-cache",
     },
+    next:{tags: ['products']}
   });
   const data = await res.json();
   if (!res.ok) {

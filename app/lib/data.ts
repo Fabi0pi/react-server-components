@@ -6,7 +6,7 @@ export const getProducts = async () => {
   try {
     connectToDB();
     const products: ProductType[] = await Product.find();
-    return products;
+    return JSON.parse(JSON.stringify(products));
   } catch (err) {
     console.log("get products error: ", err);
   }

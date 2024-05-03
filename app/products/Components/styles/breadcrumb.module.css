@@ -8,8 +8,5 @@
 
 .breadcrumbItem{
     text-transform: uppercase;
+    margin-left: 5px;
 }
-
-.breadcrumbItem:not(:last-child)::after {
-    content: " /";
-  }

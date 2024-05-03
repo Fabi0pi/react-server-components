@@ -20,7 +20,7 @@ const Breadcrumb = () => {
           return (
             <div key={label + index} className={styles.breadcrumbItem}>
               <Link href={href}>
-                {label}
+                {`> ${label}`}
               </Link>
             </div>
           );
