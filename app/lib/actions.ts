@@ -32,29 +32,22 @@ export async function editProduct(formData: FormData) {
     redirect("/products");
   } catch (error) {
     console.error("Errore durante l'aggiornamento del prodotto:", error);
-    throw error;
   }
 }
 
 export async function deleteProduct(formData: FormData) {
-  // const productId: any = formData.get("id");
-  const formDataEntries  = Object.entries(formData)
-  const productId = formDataEntries.find(([key, value]) => key === "id");
+  const {id}  = Object.fromEntries(formData)
+
   try {
-    if (!productId) {
+    if (!id) {
       throw new Error("ID not provided");
     }
 
-    // const isValidObjectId = mongoose.isValidObjectId(productId);
-    // if (!isValidObjectId) {
-    //   throw new Error("Invalid ID format");
-    // }
-
-    await Product.findByIdAndDelete(productId);
+    await Product.findOneAndDelete({id});
     revalidatePath("/products");
+    redirect("/products");
   } catch (err) {
     console.error("delete error: ", err);
-    throw err;
   }
 }
 
@@ -76,6 +69,5 @@ export async function addProduct(formData: FormData) {
     redirect("/products");
   } catch (err) {
     console.log("error edit: ", err);
-    throw err;
   }
 }

@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link';
-import styles from './breadcrumb.module.css';
+import styles from './styles/breadcrumb.module.css'
 import { usePathname } from 'next/navigation';
 
 const Breadcrumb = () => {

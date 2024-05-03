@@ -6,7 +6,6 @@ import styles from './products.module.css';
 
 export function ProductList ({products}:{products: Product[]}) {
   const [items, setItems] = useState(products)
-  console.log("🚀 ~ ProductList ~ items:", items)
   
   useEffect(()=> {
     setItems(products)

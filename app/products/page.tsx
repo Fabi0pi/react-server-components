@@ -1,6 +1,6 @@
-import { Suspense, useEffect, useState } from "react";
+import { Suspense } from "react";
 import ProductsLayout from "./layout";
-import Loading from "../loading";
+import Loading from "./Components/loading";
 import { ProductList } from "./product-list";
 import { getProducts } from "../lib/data";
 

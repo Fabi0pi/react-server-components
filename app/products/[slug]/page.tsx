@@ -1,9 +1,8 @@
 
 import React from 'react';
 import styles from './detail.module.css';
-import { editProduct } from '@/app/lib/actions';
+import { deleteProduct, editProduct } from '@/app/lib/actions';
 import { getProduct } from '@/app/lib/data';
-import { DeleteProduct } from '../Components/buttons';
 
 export default async function Detail({ params }: { params: { slug: number } }) {
   const product = await getProduct(params.slug)
@@ -29,11 +28,16 @@ export default async function Detail({ params }: { params: { slug: number } }) {
           <input type="number" name="price" defaultValue={product.price} />
         </div>
         <button type="submit">Salva modifiche</button>
-        <div>
-          Enter the product id to delete it
-          <DeleteProduct />
-        </div>
       </form>
+      <div>
+        Enter the product id to delete it
+        <form action={deleteProduct}>
+          <input name="id" type="text"></input>
+          <button className="rounded-md border p-2 hover:bg-gray-100">
+            <span className="sr-only">Delete</span>
+          </button>
+        </form>
+      </div>
     </>
   );
 }

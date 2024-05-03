@@ -18,6 +18,6 @@ export const getProduct = async (id: number) => {
     const product: ProductType | null = await Product.findOne({ id });
     return product;
   } catch (err) {
-    console.log("get products error: ", err);
+    console.log("get product error: ", err);
   }
 };
