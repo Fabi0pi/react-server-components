@@ -4,10 +4,12 @@ import styles from './detail.module.css';
 import { deleteProduct, editProduct } from '@/app/lib/actions';
 import { getProduct } from '@/app/lib/data';
 import Loading from '../Components/loading';
+import { useFormStatus } from 'react-dom';
 
 export default async function Detail({ params }: { params: { slug: number } }) {
   const product = await getProduct(params.slug)
-  if (!product) return
+  
+  if (!product) return <Loading />
 
   return (
     <Suspense fallback={<Loading />}>
